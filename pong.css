@@ -1,0 +1,255 @@
+canvas {
+    border: 2px solid red;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.paused-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    color: white;
+    text-align: center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    background-image: url(background1.jpg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+#pong {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #222;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #444;
+}
+
+.menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 15;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#controls-menu {
+    display: none;
+    background-color: rgba(34, 34, 34, 0.95);
+    padding: 15px;
+    margin-top: 10px;
+    width: 220px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#controls-menu h3 {
+    margin: 0 0 10px;
+    color: white;
+    text-align: center;
+}
+
+#controls-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    color: #ccc;
+}
+
+#controls-menu li {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.menu button {
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.menu button:hover {
+    background-color: darkred;
+}
+
+.high-scores {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 20; /* Higher than forms and menu */
+    display: none; /* Initially hidden */
+}
+
+.high-scores.active {
+    display: block; /* Make it visible when active */
+}
+.settings-menu {
+    position: fixed;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.settings-menu.active {
+    opacity: 1;
+}
+
+.settings-menu button {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.settings-menu button:hover {
+    background-color: darkred;
+}
+
+.form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8); /* Matches menu background */
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 300px; /* Adjust width as needed */
+}
+
+/* Form heading */
+.form-container h2 {
+    margin: 0 0 15px;
+    font-size: 1.5rem;
+    color: white;
+    text-align: center;
+}
+
+/* Form labels */
+.form-container label {
+    width: 100%;
+    margin-bottom: 5px;
+    text-align: left;
+    font-size: 1rem;
+    color: #ccc; /* Subtle contrast for labels */
+}
+
+/* Form inputs */
+.form-container input {
+    width: calc(100% - 20px); /* Responsive width */
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(34, 34, 34, 0.95);
+    color: white;
+    outline: none;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* Hover and focus styles for inputs */
+.form-container input:hover,
+.form-container input:focus {
+    background-color: rgba(50, 50, 50, 0.95);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Buttons */
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: red;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Button hover effect */
+.form-container button:hover {
+    background-color: darkred;
+    transform: scale(1.05);
+}
